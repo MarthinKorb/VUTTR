@@ -54,7 +54,6 @@ const Dashboard: React.FC = () => {
   async function handleUpdateTool(
     tool: Omit<ITools, 'id' | 'available'>,
   ): Promise<void> {
-    // TODO UPDATE A FOOD PLATE ON THE API
     try {
       const response = await api.put(`/tools/${editingTool.id}`, {
         ...editingTool,

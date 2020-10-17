@@ -10,6 +10,7 @@ export const ToolsContainer = styled.div`
   margin-top: 30px;
 
   display: block;
+  color: #3a3a3a;
 
   .button-add-new {
     display: flex;
