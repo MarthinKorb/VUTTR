@@ -17,11 +17,29 @@ export const ToolsContainer = styled.div`
     justify-content: space-between;
     padding: 20px 0 40px;
 
-    h2 {
-      color: #3d3d4d;
+    .input-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      input {
+        height: 56px;
+        padding: 0 24px 0 32px;
+        /* margin-left: -20px; */
+        border: 0;
+        border-radius: 8px;
+        color: #3a3a3a;
+        border: 1px solid #fff;
+        border-right: 0;
+
+        &::placeholder {
+          color: #a8a8b3;
+        }
+      }
+      svg {
+        position: absolute;
+        margin-left: 12px;
+        color: #a8a8b3;
+      }
     }
   }
-
-  /* grid-template-columns: repeat(3, 1fr); */
-  /* grid-gap: 32px; */
 `;
