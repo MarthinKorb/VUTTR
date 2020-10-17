@@ -67,13 +67,16 @@ const ModalEditTool: React.FC<IModalProps> = ({
           />
           Edit Tool
         </h1>
-
+        <label htmlFor="title">Tool Name</label>
         <Input name="title" placeholder="Tool name" />
 
+        <label htmlFor="link">Tool Link</label>
         <Input name="link" placeholder="Link" />
 
+        <label htmlFor="description">Tool Description</label>
         <Input name="description" placeholder="Description" />
 
+        <label htmlFor="tags">Tags</label>
         <Input name="tags" placeholder="Tags" />
 
         <button type="submit" data-testid="edit-tool-button">

@@ -2,19 +2,22 @@ import styled from 'styled-components';
 import { Form as Unform } from '@unform/web';
 
 export const Form = styled(Unform)`
-  padding: 48px 40px;
+  padding: 20px 20px;
   display: flex;
   flex-direction: column;
 
   h1 {
     font-weight: 600;
-    font-size: 36px;
-    line-height: 36px;
-    margin-bottom: 40px;
+    font-size: 32px;
+    line-height: 22px;
+    margin-bottom: 30px;
+  }
+  label {
+    padding: 12px 4px 8px;
   }
 
   button {
-    margin-top: 48px;
+    margin-top: 32px;
     align-self: flex-end;
   }
 
