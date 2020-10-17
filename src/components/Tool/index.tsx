@@ -11,7 +11,6 @@ interface ITools {
   link: string;
   description: string;
   tags: Array<string>;
-  // available: boolean;
 }
 
 interface IProps {
@@ -25,28 +24,11 @@ const Tool: React.FC<IProps> = ({
   handleDelete,
   handleEditTool,
 }: IProps) => {
-  // const [isAvailable, setIsAvailable] = useState(tool.available);
-
-  async function toggleAvailable(): Promise<void> {
-    try {
-      // TODO UPDATE STATUS (available)
-      await api.put(`/tools/${tool.id}`, {
-        ...tool,
-        // available: !isAvailable,
-      });
-
-      // setIsAvailable(!isAvailable);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   function setEditingTool(): void {
     handleEditTool(tool);
   }
 
   return (
-    // <Container available={isAvailable}>
     <Container>
       <section className="body">
         <div className="icon-container">
@@ -84,22 +66,7 @@ const Tool: React.FC<IProps> = ({
           </p>
         </div>
       </section>
-      <section className="footer">
-        <div className="availability-container">
-          {/* <p>{isAvailable ? 'Disponível' : 'Indisponível'}</p> */}
-
-          {/* <label htmlFor={`available-switch-${tool.id}`} className="switch">
-            <input
-              id={`available-switch-${tool.id}`}
-              type="checkbox"
-              // checked={isAvailable}
-              onChange={toggleAvailable}
-              data-testid={`change-status-tool-${tool.id}`}
-            />
-            <span className="slider" />
-          </label> */}
-        </div>
-      </section>
+      <section className="footer" />
     </Container>
   );
 };
