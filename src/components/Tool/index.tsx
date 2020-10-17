@@ -54,6 +54,10 @@ const Tool: React.FC<IProps> = ({
         <div className="main-content">
           <h2>{tool.title}</h2>
           <p>{tool.description}</p>
+          <br />
+          <a target="_blank" href={tool.link}>
+            {tool.link}
+          </a>
 
           <p className="tags">
             {tool.tags.map(tag => {
