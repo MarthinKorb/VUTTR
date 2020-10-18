@@ -46,16 +46,21 @@ const Dashboard: React.FC = () => {
       if (isChecked) {
         const response = await api.get(`tools?tags_like=${search}`);
 
-        const { tags } = response.data[0];
+        if (response.data[0]) {
+          const { tags } = response.data[0];
 
-        const filteredTag = tags.filter((tag: any) => {
-          return tag === search;
-        });
+          const filteredTag = tags.map((tag: any) => {
+            return tag === search;
+          });
 
-        console.log(filteredTag);
-        setIsSelectedTag(filteredTag);
+          console.log(filteredTag);
 
-        setTools(response.data);
+          setIsSelectedTag(filteredTag);
+
+          setTools(response.data);
+        } else {
+          setTools([]);
+        }
       } else {
         const response = await api.get(`tools?q=${search}`);
         setTools(response.data);
@@ -73,7 +78,6 @@ const Dashboard: React.FC = () => {
         available: true,
       });
       setTools([...tools, response.data]);
-      // console.log([...tools, response.data]);
     } catch (err) {
       console.log(err);
     }
