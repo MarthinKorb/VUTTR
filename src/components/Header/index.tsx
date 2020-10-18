@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { FiPlusSquare } from 'react-icons/fi';
 import { Container } from './styles';
 
 interface IHeaderProps {
@@ -11,6 +10,7 @@ const Header: React.FC<IHeaderProps> = ({ openModal }) => (
   <Container>
     <header>
       <h1>VUTTR</h1>
+      <h2>Very Usefull Tools to Remember</h2>
     </header>
   </Container>
 );

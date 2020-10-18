@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import { FiSearch } from 'react-icons/fi';
 import Header from '../../components/Header';
 
 import api from '../../services/api';
@@ -17,7 +18,6 @@ interface ITools {
   link: string;
   description: string;
   tags: Array<string>;
-  // available: boolean;
 }
 
 const Dashboard: React.FC = () => {
@@ -54,7 +54,6 @@ const Dashboard: React.FC = () => {
   async function handleUpdateTool(
     tool: Omit<ITools, 'id' | 'available'>,
   ): Promise<void> {
-    // TODO UPDATE A FOOD PLATE ON THE API
     try {
       const response = await api.put(`/tools/${editingTool.id}`, {
         ...editingTool,
@@ -111,7 +110,10 @@ const Dashboard: React.FC = () => {
       <ToolsContainer data-testid="tools-list">
         <Header openModal={toggleModal} />
         <div className="button-add-new">
-          <h2>Very Usefull Tools to Remember</h2>
+          <div className="input-container">
+            <FiSearch />
+            <input name="search" placeholder="Search" />
+          </div>
           <Button openModal={toggleModal} />
         </div>
         {tools &&

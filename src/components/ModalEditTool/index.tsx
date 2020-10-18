@@ -1,6 +1,6 @@
 import React, { useRef, useCallback } from 'react';
 
-import { FiCheckSquare } from 'react-icons/fi';
+import { FiCheckSquare, FiEdit3 } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from './styles';
 import Modal from '../Modal';
@@ -49,7 +49,6 @@ const ModalEditTool: React.FC<IModalProps> = ({
         link,
         tags,
       });
-      // handleUpdateTool(data);
       setIsOpen();
     },
     [handleUpdateTool, setIsOpen],
@@ -58,14 +57,26 @@ const ModalEditTool: React.FC<IModalProps> = ({
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Form ref={formRef} onSubmit={handleSubmit} initialData={editingTool}>
-        <h1>Edit Tool</h1>
-
+        <h1>
+          {' '}
+          <FiEdit3
+            size={24}
+            style={{
+              marginRight: '12px',
+            }}
+          />
+          Edit Tool
+        </h1>
+        <label htmlFor="title">Tool Name</label>
         <Input name="title" placeholder="Tool name" />
 
+        <label htmlFor="link">Tool Link</label>
         <Input name="link" placeholder="Link" />
 
+        <label htmlFor="description">Tool Description</label>
         <Input name="description" placeholder="Description" />
 
+        <label htmlFor="tags">Tags</label>
         <Input name="tags" placeholder="Tags" />
 
         <button type="submit" data-testid="edit-tool-button">
