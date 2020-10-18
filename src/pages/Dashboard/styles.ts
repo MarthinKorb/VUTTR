@@ -41,6 +41,16 @@ export const ToolsContainer = styled.div`
         margin-left: 12px;
         color: #a8a8b3;
       }
+
+      .checkbox-container {
+        width: 300px;
+        display: flex;
+        align-items: center;
+
+        input {
+          margin: 0 12px 0 16px;
+        }
+      }
     }
   }
 `;

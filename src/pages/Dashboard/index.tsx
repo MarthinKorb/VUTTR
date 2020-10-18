@@ -26,15 +26,43 @@ const Dashboard: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
+  const [search, setSearch] = useState('');
+  const [isChecked, setIsChecked] = useState(false);
+  const [isTag, setIsTag] = useState(0);
+  const [isSelectedTag, setIsSelectedTag] = useState('');
+
   useEffect(() => {
     async function loadTools(): Promise<void> {
       const response = await api.get('/tools');
       setTools(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     }
 
     loadTools();
   }, []);
+
+  useEffect(() => {
+    async function fetchItems(): Promise<void> {
+      if (isChecked) {
+        const response = await api.get(`tools?tags_like=${search}`);
+
+        const { tags } = response.data[0];
+
+        const filteredTag = tags.filter((tag: any) => {
+          return tag === search;
+        });
+
+        console.log(filteredTag);
+        setIsSelectedTag(filteredTag);
+
+        setTools(response.data);
+      } else {
+        const response = await api.get(`tools?q=${search}`);
+        setTools(response.data);
+      }
+    }
+    fetchItems();
+  }, [search, isChecked]);
 
   async function handleAddTool(
     tool: Omit<ITools, 'id' | 'available'>,
@@ -45,7 +73,7 @@ const Dashboard: React.FC = () => {
         available: true,
       });
       setTools([...tools, response.data]);
-      console.log([...tools, response.data]);
+      // console.log([...tools, response.data]);
     } catch (err) {
       console.log(err);
     }
@@ -93,6 +121,14 @@ const Dashboard: React.FC = () => {
     toggleEditModal();
   }
 
+  function handleToggleValueCheckbox(): void {
+    if (isChecked) {
+      setIsTag(1);
+    } else {
+      setIsTag(0);
+    }
+  }
+
   return (
     <>
       <ModalAddTool
@@ -112,7 +148,24 @@ const Dashboard: React.FC = () => {
         <div className="button-add-new">
           <div className="input-container">
             <FiSearch />
-            <input name="search" placeholder="Search" />
+            <input
+              name="search"
+              placeholder="Search"
+              value={search}
+              onChange={e => setSearch(e.target.value)}
+            />
+            <div className="checkbox-container">
+              <input
+                type="checkbox"
+                id="tag-input"
+                name="tag-input"
+                value={isTag}
+                checked={isChecked}
+                onClick={() => setIsChecked(!isChecked)}
+                onChange={() => handleToggleValueCheckbox}
+              />
+              <label htmlFor="tag-input">Search in tags only</label>
+            </div>
           </div>
           <Button openModal={toggleModal} />
         </div>
@@ -123,6 +176,7 @@ const Dashboard: React.FC = () => {
               tool={tool}
               handleDelete={handleDeleteTool}
               handleEditTool={handleEditTool}
+              isSelectedTag={isSelectedTag}
             />
           ))}
       </ToolsContainer>
