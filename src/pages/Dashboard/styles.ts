@@ -14,6 +14,7 @@ export const ToolsContainer = styled.div`
 
   .button-add-new {
     display: flex;
+
     align-items: center;
     justify-content: space-between;
     padding: 20px 0 40px;
@@ -43,7 +44,7 @@ export const ToolsContainer = styled.div`
       }
 
       .checkbox-container {
-        width: 300px;
+        width: 200px;
         display: flex;
         align-items: center;
 

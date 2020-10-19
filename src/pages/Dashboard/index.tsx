@@ -8,6 +8,7 @@ import api from '../../services/api';
 import Tool from '../../components/Tool';
 import ModalAddTool from '../../components/ModalAddTool';
 import ModalEditTool from '../../components/ModalEditTool';
+import ModalDeleteConfirmation from '../../components/ModalDeleteConfirmation';
 
 import { ToolsContainer } from './styles';
 import Button from '../../components/Button';
@@ -23,8 +24,10 @@ interface ITools {
 const Dashboard: React.FC = () => {
   const [tools, setTools] = useState<ITools[]>([]);
   const [editingTool, setEditingTool] = useState<ITools>({} as ITools);
+  const [deletingTool, setDeletingTool] = useState<ITools>({} as ITools);
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const [search, setSearch] = useState('');
   const [isChecked, setIsChecked] = useState(false);
@@ -69,13 +72,10 @@ const Dashboard: React.FC = () => {
     fetchItems();
   }, [search, isChecked]);
 
-  async function handleAddTool(
-    tool: Omit<ITools, 'id' | 'available'>,
-  ): Promise<void> {
+  async function handleAddTool(tool: Omit<ITools, 'id'>): Promise<void> {
     try {
       const response = await api.post('/tools', {
         ...tool,
-        available: true,
       });
       setTools([...tools, response.data]);
     } catch (err) {
@@ -83,9 +83,7 @@ const Dashboard: React.FC = () => {
     }
   }
 
-  async function handleUpdateTool(
-    tool: Omit<ITools, 'id' | 'available'>,
-  ): Promise<void> {
+  async function handleUpdateTool(tool: Omit<ITools, 'id'>): Promise<void> {
     try {
       const response = await api.put(`/tools/${editingTool.id}`, {
         ...editingTool,
@@ -103,13 +101,14 @@ const Dashboard: React.FC = () => {
   }
 
   async function handleDeleteTool(id: number): Promise<void> {
-    try {
-      await api.delete(`/tools/${id}`);
+    setDeleteModalOpen(!deleteModalOpen);
+    // try {
+    //   await api.delete(`/tools/${id}`);
 
-      setTools(tools.filter(tool => tool.id !== id));
-    } catch (err) {
-      console.log(err);
-    }
+    //   setTools(tools.filter(tool => tool.id !== id));
+    // } catch (err) {
+    //   console.log(err);
+    // }
   }
 
   function toggleModal(): void {
@@ -118,6 +117,10 @@ const Dashboard: React.FC = () => {
 
   function toggleEditModal(): void {
     setEditModalOpen(!editModalOpen);
+  }
+
+  function toggleDeleteModal(): void {
+    setDeleteModalOpen(!deleteModalOpen);
   }
 
   function handleEditTool(tool: ITools): void {
@@ -145,6 +148,13 @@ const Dashboard: React.FC = () => {
         setIsOpen={toggleEditModal}
         editingTool={editingTool}
         handleUpdateTool={handleUpdateTool}
+      />
+
+      <ModalDeleteConfirmation
+        isOpen={deleteModalOpen}
+        setIsOpen={toggleDeleteModal}
+        deletingTool={deletingTool}
+        // handleDelete={handleDeleteTool}
       />
 
       <ToolsContainer data-testid="tools-list">
