@@ -25,7 +25,7 @@ interface ICreateToolData {
 interface IModalProps {
   isOpen: boolean;
   setIsOpen: () => void;
-  handleAddTool: (tool: Omit<ITools, 'id' | 'available'>) => void;
+  handleAddTool: (tool: Omit<ITools, 'id'>) => void;
 }
 
 const ModalAddTool: React.FC<IModalProps> = ({
@@ -47,7 +47,6 @@ const ModalAddTool: React.FC<IModalProps> = ({
         link,
         tags,
       });
-      // console.log(data);
       setIsOpen();
     },
     [handleAddTool, setIsOpen],
