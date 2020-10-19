@@ -13,13 +13,21 @@ export const Container = styled.div`
       display: flex;
       justify-content: flex-end;
       flex-direction: row;
+
+      #icon-delete {
+        background-color: #f95e5a;
+        transition: all 0.2s;
+      }
+      #icon-delete:hover {
+        background-color: #fcaeac;
+      }
       button {
         background: #12db89;
         padding: 10px;
         border-radius: 8px;
         display: flex;
         border: none;
-        transition: all 0.5s;
+        transition: all 0.2s;
 
         svg {
           color: #fff;
@@ -39,6 +47,7 @@ export const Container = styled.div`
 
     div.main-content {
       margin-top: -40px;
+      max-width: 85%;
 
       a {
         color: #353372;
