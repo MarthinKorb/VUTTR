@@ -9,8 +9,8 @@ export const Container = styled.div`
     font-weight: 600;
     border-radius: 8px;
     border: 0;
-    background: #12db89;
-    color: #fff;
+    background: #e4e4eb;
+    color: #3a3a3a;
 
     display: flex;
     flex-direction: row;
@@ -23,7 +23,7 @@ export const Container = styled.div`
     .icon {
       display: flex;
       padding: 16px 16px;
-      background: #10b26c;
+      background: #c7c4cd;
       border-radius: 0 8px 8px 0;
       margin: 0 auto;
     }
