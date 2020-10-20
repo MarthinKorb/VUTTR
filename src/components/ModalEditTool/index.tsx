@@ -17,7 +17,7 @@ interface ITools {
 interface IModalProps {
   isOpen: boolean;
   setIsOpen: () => void;
-  handleUpdateTool: (tool: Omit<ITools, 'id' | 'available'>) => void;
+  handleUpdateTool: (tool: Omit<ITools, 'id'>) => void;
   editingTool: ITools;
 }
 
