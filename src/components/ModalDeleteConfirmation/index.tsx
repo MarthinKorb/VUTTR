@@ -7,13 +7,18 @@ import { Container } from './styles';
 interface IModalProps {
   isOpen: boolean;
   setIsOpen: () => void;
-  // handleDelete: (id: number) => {};
-  deletingTool: any;
+  deletingTool: boolean;
+  setDeletingTool: (boolean: boolean) => void;
 }
 
-const ModalDeleteTool: React.FC<IModalProps> = ({ isOpen, setIsOpen }) => {
-  async function handleDeleteTool(): Promise<void> {
-    console.log('Delete tool');
+const ModalDeleteTool: React.FC<IModalProps> = ({
+  isOpen,
+  setIsOpen,
+  deletingTool,
+  setDeletingTool,
+}) => {
+  function handleConfirmation(): void {
+    setDeletingTool(true);
   }
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -44,7 +49,7 @@ const ModalDeleteTool: React.FC<IModalProps> = ({ isOpen, setIsOpen }) => {
             </button>
           </Container>
           <Container>
-            <button type="button" onClick={handleDeleteTool}>
+            <button type="button" onClick={handleConfirmation}>
               <div className="text">Yes, remove tool</div>
               <div className="icon">
                 <FiTrash size={24} />

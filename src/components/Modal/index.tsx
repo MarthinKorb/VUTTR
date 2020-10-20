@@ -2,15 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import ReactModal from 'react-modal';
 
-interface ITools {
-  id: number;
-  title: string;
-  link: string;
-  description: string;
-  tags: Array<string>;
-  available: boolean;
-}
-
 interface IModalProps {
   children: any;
   isOpen: boolean;
@@ -41,12 +32,13 @@ const Modal: React.FC<IModalProps> = ({ children, isOpen, setIsOpen }) => {
           background: '#F0F0F5',
           color: '#000000',
           borderRadius: '8px',
+          minHeight: '300px',
           width: '50vw',
-          height: '80vh',
+          maxWidth: '600px',
+          maxHeight: '80vh',
           border: 'none',
         },
         overlay: {
-          // backgroundColor: '#121214e6',
           backgroundColor: 'rgba(0,0,0,0.7)',
         },
       }}

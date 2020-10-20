@@ -24,7 +24,7 @@ interface ITools {
 const Dashboard: React.FC = () => {
   const [tools, setTools] = useState<ITools[]>([]);
   const [editingTool, setEditingTool] = useState<ITools>({} as ITools);
-  const [deletingTool, setDeletingTool] = useState<ITools>({} as ITools);
+  const [deletingTool, setDeletingTool] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -32,7 +32,9 @@ const Dashboard: React.FC = () => {
   const [search, setSearch] = useState('');
   const [isChecked, setIsChecked] = useState(false);
   const [isTag, setIsTag] = useState(0);
-  const [isSelectedTag, setIsSelectedTag] = useState('');
+  const [isSelectedTag, setIsSelectedTag] = useState({} as any);
+
+  const [idSelected, setIdSelected] = useState(-1);
 
   useEffect(() => {
     async function loadTools(): Promise<void> {
@@ -46,17 +48,16 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     async function fetchItems(): Promise<void> {
-      if (isChecked) {
+      if (isChecked && search !== '') {
         const response = await api.get(`tools?tags_like=${search}`);
 
-        if (response.data[0]) {
+        if (response.data) {
           const { tags } = response.data[0];
 
           const filteredTag = tags.map((tag: any) => {
-            return tag === search;
+            const tagFound = tag.search(search);
+            return tagFound !== -1;
           });
-
-          console.log(filteredTag);
 
           setIsSelectedTag(filteredTag);
 
@@ -100,16 +101,29 @@ const Dashboard: React.FC = () => {
     }
   }
 
-  async function handleDeleteTool(id: number): Promise<void> {
+  function handleOpenDeleteModal(id: number): void {
+    setIdSelected(id);
     setDeleteModalOpen(!deleteModalOpen);
-    // try {
-    //   await api.delete(`/tools/${id}`);
-
-    //   setTools(tools.filter(tool => tool.id !== id));
-    // } catch (err) {
-    //   console.log(err);
-    // }
   }
+
+  async function handleDeleteTool(id: number): Promise<void> {
+    try {
+      await api.delete(`/tools/${id}`);
+
+      setTools(tools.filter(tool => tool.id !== id));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    if (deletingTool) {
+      handleDeleteTool(idSelected);
+      setDeleteModalOpen(!deleteModalOpen);
+      setDeletingTool(false);
+      setIdSelected(-1);
+    }
+  }, [deletingTool, idSelected, deleteModalOpen]);
 
   function toggleModal(): void {
     setModalOpen(!modalOpen);
@@ -133,6 +147,7 @@ const Dashboard: React.FC = () => {
       setIsTag(1);
     } else {
       setIsTag(0);
+      setIsSelectedTag({});
     }
   }
 
@@ -154,7 +169,7 @@ const Dashboard: React.FC = () => {
         isOpen={deleteModalOpen}
         setIsOpen={toggleDeleteModal}
         deletingTool={deletingTool}
-        // handleDelete={handleDeleteTool}
+        setDeletingTool={setDeletingTool}
       />
 
       <ToolsContainer data-testid="tools-list">
@@ -188,7 +203,7 @@ const Dashboard: React.FC = () => {
             <Tool
               key={tool.id}
               tool={tool}
-              handleDelete={handleDeleteTool}
+              handleOpenDeleteModal={handleOpenDeleteModal}
               handleEditTool={handleEditTool}
               isSelectedTag={isSelectedTag}
             />

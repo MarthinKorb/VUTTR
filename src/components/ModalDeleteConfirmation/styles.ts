@@ -2,11 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  flex: 1;
   height: 100%;
   flex-direction: column;
   justify-content: space-between;
 
   .span-text {
+    height: 100px;
+    margin-top: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,11 +23,11 @@ export const Container = styled.div`
     background: #f0f0f5;
     padding: 1px;
     color: #3a3a3a;
-    display: flex;
+    margin-top: 50px;
 
     #button-cancel {
       background-color: #12db89;
-      margin-right: 16px;
+      margin-right: 0px;
       transition: all 0.2s;
     }
     #button-cancel:hover {

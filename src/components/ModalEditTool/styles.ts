@@ -31,6 +31,7 @@ export const Form = styled(Unform)`
     display: flex;
     flex-direction: row;
     align-items: center;
+    transition: all 0.2s;
 
     .text {
       padding: 16px 24px;
@@ -43,5 +44,9 @@ export const Form = styled(Unform)`
       border-radius: 0 8px 8px 0;
       margin: 0 auto;
     }
+  }
+
+  button:hover {
+    opacity: 0.8;
   }
 `;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { FiEdit3, FiTrash } from 'react-icons/fi';
 
@@ -14,16 +14,16 @@ interface ITools {
 
 interface IProps {
   tool: ITools;
-  handleDelete: (id: number) => {};
   handleEditTool: (tool: ITools) => void;
   isSelectedTag: string;
+  handleOpenDeleteModal: (id: number) => void;
 }
 
 const Tool: React.FC<IProps> = ({
   tool,
-  handleDelete,
   handleEditTool,
   isSelectedTag,
+  handleOpenDeleteModal,
 }: IProps) => {
   function setEditingTool(): void {
     handleEditTool(tool);
@@ -43,10 +43,10 @@ const Tool: React.FC<IProps> = ({
           </button>
 
           <button
+            id="icon-delete"
             type="button"
             className="icon"
-            id="icon-delete"
-            onClick={() => handleDelete(tool.id)}
+            onClick={() => handleOpenDeleteModal(tool.id)}
             data-testid={`remove-tool-${tool.id}`}
           >
             <FiTrash size={20} />
@@ -57,7 +57,7 @@ const Tool: React.FC<IProps> = ({
           <h2>{tool.title}</h2>
           <p>{tool.description}</p>
           <br />
-          <a target="_blank" rel="noreferrer" href={tool.link}>
+          <a target="_blank" href={tool.link}>
             {tool.link}
           </a>
 

@@ -19,7 +19,7 @@ export const Container = styled.div`
         transition: all 0.2s;
       }
       #icon-delete:hover {
-        background-color: #fcaeac;
+        opacity: 0.8;
       }
       button {
         background: #12db89;
@@ -38,9 +38,9 @@ export const Container = styled.div`
         }
       }
       button:hover {
-        background-color: #88edc4;
+        opacity: 0.8;
         svg {
-          color: #000;
+          color: #3a3a3a;
         }
       }
     }
@@ -80,6 +80,11 @@ export const Container = styled.div`
 
       b {
         font-weight: 600;
+      }
+
+      .tag-true {
+        color: #000;
+        background-color: yellow;
       }
     }
   }
