@@ -10,8 +10,6 @@ Aplicação que armazena suas ferramentas favoritas
 ----------------------------------------------------
 
 <p align="center" border-radius="4px">
-
-<img src=".github/exp4.png" width=800">
 <img src=".github/exp1.png" width=800">
 <img src=".github/exp2.png" width=800">
 <img src=".github/exp3.png" width=800">
