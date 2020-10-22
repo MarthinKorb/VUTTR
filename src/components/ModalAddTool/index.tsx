@@ -19,7 +19,6 @@ interface ICreateToolData {
   link: string;
   description: string;
   tags: Array<string>;
-  // available: boolean;
 }
 
 interface IModalProps {

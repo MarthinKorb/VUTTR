@@ -42,7 +42,6 @@ const Dashboard: React.FC = () => {
       setTools(response.data);
       // console.log(response.data);
     }
-
     loadTools();
   }, []);
 
@@ -52,21 +51,20 @@ const Dashboard: React.FC = () => {
         const response = await api.get(`tools?tags_like=${search}`);
 
         if (response.data) {
-          const { tags } = response.data[0];
-
-          const filteredTag = tags.map((tag: any) => {
-            const tagFound = tag.search(search);
-            return tagFound !== -1;
-          });
-
-          setIsSelectedTag(filteredTag);
-
+          // const { tags } = response.data[0];
+          // const filteredTag = tags.map((tag: any) => {
+          //   const tagFound = tag.search(search);
+          //   return tagFound !== -1;
+          // });
+          // setIsSelectedTag(filteredTag);
+          // console.log(response.data);
           setTools(response.data);
         } else {
           setTools([]);
         }
       } else {
         const response = await api.get(`tools?q=${search}`);
+        console.log(response.data);
         setTools(response.data);
       }
     }
@@ -79,6 +77,7 @@ const Dashboard: React.FC = () => {
         ...tool,
       });
       setTools([...tools, response.data]);
+      console.log(tools);
     } catch (err) {
       console.log(err);
     }
