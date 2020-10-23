@@ -33,7 +33,15 @@ Acesse a *Fake API* no link abaixo. Lá você terá as informações para rodar 
 
     https://gitlab.com/bossabox/challenge-fake-api/tree/master
 
+### Obs: Caso você for usar a FakeApi, vá até o arquivo **api.ts** e modifique para:
 
+    import axios from 'axios';
+
+    const api = axios.create({
+         baseURL: 'http://localhost:3000',
+     });
+
+    export default api;
 ----------------------------------------------------
 
 Abra o terminal na pasta do projeto e instale as dependências rodando o comando:
@@ -43,6 +51,7 @@ Abra o terminal na pasta do projeto e instale as dependências rodando o comando
 Agora vamos iniciar nosso front-end:
 
     yarn start
+    
 
 **Feito!** ✔
 
