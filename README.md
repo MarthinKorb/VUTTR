@@ -4,7 +4,7 @@
 
 Aplicação que armazena suas ferramentas favoritas
 
-### ReactJS, Typescript, StyledComponents
+### ReactJS, Typescript, StyledComponents, Jest, Axios, Yup, 
 
 ----------------------------------------------------
 
