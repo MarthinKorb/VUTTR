@@ -33,7 +33,7 @@ Acesse a *Fake API* no link abaixo. Lá você terá as informações para rodar 
 
     https://gitlab.com/bossabox/challenge-fake-api/tree/master
 
-### Obs: Caso você for usar a FakeApi, vá até o arquivo **api.ts** e modifique para:
+### Vá até o arquivo ***api.ts*** e modifique para:
 
     import axios from 'axios';
 
