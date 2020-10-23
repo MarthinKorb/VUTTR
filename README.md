@@ -5,7 +5,6 @@
 Aplicação que armazena suas ferramentas favoritas
 
 ### ReactJS, Typescript, StyledComponents
-### API Fake
 
 ----------------------------------------------------
 
@@ -19,9 +18,13 @@ Aplicação que armazena suas ferramentas favoritas
 
 ## Instalação | Execução
 
-Clone esse repositório rodando:
+Clone esse repositório rodando o comando:
 
     git clone https://github.com/MarthinKorb/VUTTR
+
+Acesse a *Fake API* no link abaixo. Lá você terá as informações para rodar o serviço.
+
+    https://gitlab.com/bossabox/challenge-fake-api/tree/master
 
 
 ----------------------------------------------------

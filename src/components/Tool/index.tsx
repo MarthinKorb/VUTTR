@@ -62,13 +62,13 @@ const Tool: React.FC<IProps> = ({
           </a>
 
           <p className="tags">
-            {/* {tool.tags.map(tag => {
+            {tool.tags.map(tag => {
               return (
                 <>
                   <b>#{tag}</b>{' '}
                 </>
               );
-            })} */}
+            })}
           </p>
         </div>
       </section>
