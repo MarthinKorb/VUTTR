@@ -12,6 +12,9 @@ Aplicação que armazena suas ferramentas favoritas
 <img src=".github/exp1.png" width=800">
 <img src=".github/exp2.png" width=800">
 <img src=".github/exp3.png" width=800">
+<img src=".github/exp4.png" width=800">
+<img src=".github/exp5.png" width=800">
+<img src=".github/exp6.png" width=800">
 </p>
 
 ----------------------------------------------------
