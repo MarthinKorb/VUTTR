@@ -38,9 +38,10 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     async function loadTools(): Promise<void> {
+      //searching all tools in system
       const response = await api.get('/tools');
+      //setting the state with the response of api
       setTools(response.data);
-      // console.log(response.data);
     }
     loadTools();
   }, []);
@@ -50,14 +51,12 @@ const Dashboard: React.FC = () => {
       if (isChecked && search !== '') {
         const response = await api.get(`tools?tags_like=${search}`);
 
-        if (response.data) {
-          // const { tags } = response.data[0];
-          // const filteredTag = tags.map((tag: any) => {
-          //   const tagFound = tag.search(search);
-          //   return tagFound !== -1;
-          // });
-          // setIsSelectedTag(filteredTag);
-          // console.log(response.data);
+        if (response.data[0]) {
+          const { tags } = response.data[0];
+          const filteredTag = tags.map((tag: any) => {
+            return tag === search;
+          });
+          setIsSelectedTag(filteredTag);
           setTools(response.data);
         } else {
           setTools([]);
