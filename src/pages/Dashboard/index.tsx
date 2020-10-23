@@ -48,6 +48,7 @@ const Dashboard: React.FC = () => {
 
   useEffect(() => {
     async function fetchItems(): Promise<void> {
+      //testing if check-box is checked and if there's something in it
       if (isChecked && search !== '') {
         const response = await api.get(`tools?tags_like=${search}`);
 
@@ -62,21 +63,27 @@ const Dashboard: React.FC = () => {
           setTools([]);
         }
       } else {
+        //Catching all tools with title, description or link with any word = search
         const response = await api.get(`tools?q=${search}`);
         console.log(response.data);
+        //putting filtered tools in the list
         setTools(response.data);
       }
     }
     fetchItems();
+    //making sure that when search or ckeck-box change the aplication execute
+    //the function fetchItems to load the list of items again
   }, [search, isChecked]);
 
   async function handleAddTool(tool: Omit<ITools, 'id'>): Promise<void> {
     try {
+      //posting data to create a new tool
       const response = await api.post('/tools', {
         ...tool,
       });
+      //setting state with the current list of tools and the new one
       setTools([...tools, response.data]);
-      console.log(tools);
+      //console.log(tools);
     } catch (err) {
       console.log(err);
     }
@@ -84,11 +91,16 @@ const Dashboard: React.FC = () => {
 
   async function handleUpdateTool(tool: Omit<ITools, 'id'>): Promise<void> {
     try {
+      // updating tool with the tool that was being edited and the current list
+      // of tools
       const response = await api.put(`/tools/${editingTool.id}`, {
         ...editingTool,
         ...tool,
       });
 
+      // mapping tool's list in which contains the tool to be updated.
+      // if it finds the tool, it updates with new data
+      // if it's not, it keeps the last data
       setTools(
         tools.map(mappedTool =>
           mappedTool.id === editingTool.id ? { ...response.data } : mappedTool,
